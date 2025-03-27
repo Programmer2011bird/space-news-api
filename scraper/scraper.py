@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import datetime
 import requests
 
 
@@ -21,7 +20,19 @@ class scraper:
         
         return self.NEWS_DIVS
     
+    def scrape_whole_article(self, link: str) -> str:
+        self.RESPONSE: requests.Response = requests.get(link)
+        self.SOUP: BeautifulSoup = BeautifulSoup(self.RESPONSE.text, "html.parser")
+        self.PARENT_DIV = self.SOUP.find("div", attrs={"id":"article-body"})
+        self.PARAGRAPHS: list = self.PARENT_DIV.find_all("p")
+        self.PARAGRAPH: str = ""
+        
+        for p in self.PARAGRAPHS:
+            self.PARAGRAPH += p.text
 
-if __name__ == "__main__":
-    SCRAPER: scraper = scraper()
-    SCRAPER.scrape()
+        return self.PARAGRAPH
+    
+
+# if __name__ == "__main__":
+    # SCRAPER: scraper = scraper()
+    # SCRAPER.scrape_whole_article(link="https://www.space.com/space-exploration/mars-rovers/strange-sphere-studded-rock-on-mars-found-by-nasas-perseverance-rover")

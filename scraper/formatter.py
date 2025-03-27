@@ -13,11 +13,11 @@ class formatter:
         for index in range(len(self.NEWS_DIVS) - 1):
             try:
                 CONTENT = self.NEWS_DIVS[index + 1].find('div', attrs={'class':'content'})
-                print(CONTENT)
     
                 CATEGORY: str = self.NEWS_DIVS[index + 1].find('a', attrs={'class':'category-link'}).text
-                print(CATEGORY)
-    
+                LINK: str = self.NEWS_DIVS[index + 1].find_all('a', attrs={'class':'article-link'}, href=True)[0]['href']
+                ARTICLE_CONTENT: str = self.scraper.scrape_whole_article(LINK)
+
                 NAME: str = CONTENT.find('h3', attrs={'class':'article-name'}).text
                 SUMMARY: str = CONTENT.find('p', attrs={'class': 'synopsis'}).text
                 DATE: datetime.date = datetime.date.today()
@@ -26,18 +26,19 @@ class formatter:
                     'Name': NAME,
                     'Category': CATEGORY,
                     'Date': DATE,
-                    'Summary': SUMMARY
+                    'Link': LINK,
+                    'Summary': SUMMARY,
+                    'Article_Content': ARTICLE_CONTENT
                 }
     
                 self.WHOLE_INFO.append(ITERATION_INFO)
 
-            
             except AttributeError:
                 pass
 
         return self.WHOLE_INFO
+    
 
-
-if __name__ == "__main__":
-    FORMATTER: formatter = formatter()
-    print(FORMATTER.format())
+# if __name__ == "__main__":
+    # FORMATTER: formatter = formatter()
+    # print(FORMATTER.format())
