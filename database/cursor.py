@@ -14,8 +14,6 @@ class DB_CONTROLLER:
         )
         self.CURSOR = self.CONN.cursor()
 
-        # function for filtering stuff by the date
-
     def insert(self, name:str, category:str, date:datetime.date, link:str, summary:str, article_content:str) -> None:
         self.CURSOR.execute("SELECT name FROM news;")
         self.IS_REPUTATIVE: bool = False
@@ -24,11 +22,14 @@ class DB_CONTROLLER:
 
         for title in titles:
             if name == title[0]:
-                print("reputative insert : Not pushing changes to db")
                 self.IS_REPUTATIVE = True
+                print("reputative insert : Not pushing changes to db")
+                
                 break
+
             else:
                 self.IS_REPUTATIVE = False
+                
                 pass
         
         if not self.IS_REPUTATIVE:
@@ -61,8 +62,9 @@ class DB_CONTROLLER:
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
+    
+    def search_category(self, category: str) -> list:
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content FROM news WHERE category='{category}'")
+        search_results: list = self.CURSOR.fetchall()
 
-
-if __name__ == "__main__":
-    DB: DB_CONTROLLER = DB_CONTROLLER()
-    print(DB.search_between_dates(datetime.date(2025, 3, 28), datetime.date(2025, 4, 1)))
+        return search_results
