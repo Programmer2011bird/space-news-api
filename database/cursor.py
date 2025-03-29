@@ -14,9 +14,7 @@ class DB_CONTROLLER:
         )
         self.CURSOR = self.CONN.cursor()
 
-        # function for inserting stuff to the table 
         # function for filtering stuff by the date
-        # function for searching for stuff in the table ( title )
 
     def insert(self, name:str, category:str, date:datetime.date, link:str, summary:str, article_content:str) -> None:
         self.CURSOR.execute("SELECT name FROM news;")
@@ -39,14 +37,21 @@ class DB_CONTROLLER:
             
             print("successfully inserted the data into db")
     
-    def search_title(self, keyword: str) -> list[str]:
+    def search_title(self, keyword: str) -> list:
         keyword = keyword.replace(" ", "+")
         search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content FROM news WHERE title_search @@ to_tsquery('english', '{keyword}')")
         search_results: list = self.CURSOR.fetchall()
-        print(search_results)
+        
+        return search_results
+    
+    def search_date(self, Date: datetime.date) -> list:
+        Date: str = Date.__str__()
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content  FROM news WHERE date='{Date}';")
+        search_results: list = self.CURSOR.fetchall()
 
+        return search_results
 
 
 if __name__ == "__main__":
     DB: DB_CONTROLLER = DB_CONTROLLER()
-    # DB.insert("WTFFF", "physics", datetime.date(2025, 3, 2), "https://string_theory.com", "strings", "strings are going to fuck us the fuck up")
+    print(DB.search_date(datetime.date(2025, 3, 28)))
