@@ -10,7 +10,7 @@
 * [x] Summary of the articles
 * [x] The category of the articles
 * [x] Database function for filtering by date
-* [ ] Database function for filtering between dates
+* [x] Database function for filtering between dates
 * [ ] Database function for filtering by category
 * [x] Database function for filtering by keywords in the title
 * [ ] Store all the articles data in A Database 
