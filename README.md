@@ -9,9 +9,10 @@
 * [x] The entire content of the articles
 * [x] Summary of the articles
 * [x] The category of the articles
-* [ ] Database function for filtering by date
+* [x] Database function for filtering by date
 * [ ] Database function for filtering between dates
-* [ ] Database function for filtering by keywords in the title
+* [ ] Database function for filtering by category
+* [x] Database function for filtering by keywords in the title
 * [ ] Store all the articles data in A Database 
 * [ ] Endpoint for filtering news by their category
 * [ ] Endpoint for getting news from a certain date
