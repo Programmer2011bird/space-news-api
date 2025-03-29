@@ -39,6 +39,7 @@ class DB_CONTROLLER:
     
     def search_title(self, keyword: str) -> list:
         keyword = keyword.replace(" ", "+")
+        
         search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content FROM news WHERE title_search @@ to_tsquery('english', '{keyword}')")
         search_results: list = self.CURSOR.fetchall()
         
@@ -46,7 +47,17 @@ class DB_CONTROLLER:
     
     def search_date(self, Date: datetime.date) -> list:
         Date: str = Date.__str__()
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content  FROM news WHERE date='{Date}';")
+        
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content FROM news WHERE date='{Date}';")
+        search_results: list = self.CURSOR.fetchall()
+
+        return search_results
+    
+    def search_between_dates(self, start_date: datetime.date, end_date: datetime.date) -> list:
+        start_date: str = start_date.__str__()
+        end_date: str = end_date.__str__()
+
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content FROM news WHERE date BETWEEN '{start_date}' AND '{end_date}';")
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
@@ -54,4 +65,4 @@ class DB_CONTROLLER:
 
 if __name__ == "__main__":
     DB: DB_CONTROLLER = DB_CONTROLLER()
-    print(DB.search_date(datetime.date(2025, 3, 28)))
+    print(DB.search_between_dates(datetime.date(2025, 3, 28), datetime.date(2025, 4, 1)))
