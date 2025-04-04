@@ -1,16 +1,16 @@
+from .conf import database, user, password, host, port
 import psycopg2
 import datetime
-import conf
 
 
 class DB_CONTROLLER:
     def __init__(self):
         self.CONN = psycopg2.connect(
-            database=conf.database,
-            user=conf.user,
-            password=conf.password,
-            host=conf.host,
-            port=conf.port
+            database=database,
+            user=user,
+            password=password,
+            host=host,
+            port=port
         )
         self.CURSOR = self.CONN.cursor()
 
