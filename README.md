@@ -16,7 +16,7 @@
 * [ ] Store all the articles data in A Database 
 * [ ] Endpoint for filtering news by their category
 * [ ] Endpoint for getting news from a certain date
-* [ ] Endpoint for getting news with a certain keyword in their title
+* [x] Endpoint for getting news with a certain keyword in their title
 
 > [!WARNING]
 > THIS API IS STILL UNDER DEVELOPEMENT
