@@ -9,6 +9,8 @@
 * [x] The entire content of the articles
 * [x] Summary of the articles
 * [x] The category of the articles
+* [ ] Images in the article title
+* [ ] Images in the article
 * [x] Database function for filtering by date
 * [x] Database function for filtering between dates
 * [x] Database function for filtering by category
@@ -18,7 +20,8 @@
 * [x] Endpoint for getting news from a certain date
 * [x] Endpoint for getting news between a certain date
 * [x] Endpoint for getting news with a certain keyword in their title
-* [ ] Clean up endpoint outputs 
+* [ ] Endpoint for daily news ( /daily or / )
+* [x] Clean up endpoint outputs 
 
 > [!WARNING]
 > THIS API IS STILL UNDER DEVELOPEMENT
