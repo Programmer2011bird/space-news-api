@@ -36,6 +36,7 @@ async def search_keyword(query: str) -> dict[str, list[dict[str, str | datetime.
 
 @API.get("/search/category/{query}")
 async def search_category(query: str) -> dict[str, list[dict[str, str |  datetime.date]]]:
+    query: str = query.replace("%20", " ")
     results: list[tuple] = DB_CONTROLLER.search_category(query)
     out: list[dict[str, str |  datetime.date]] = assign_key(results)
 
