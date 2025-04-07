@@ -57,3 +57,13 @@ async def search_between_dates(start_year: str, start_month: str, start_day: str
     out: list[dict[str, str |  datetime.date]] = assign_key(results)
 
     return {"results": out}
+
+@API.get("/")
+@API.get("/daily")
+async def get_daily_news():
+    today_date: datetime.date = datetime.date.today()
+    
+    results: list[tuple] = DB_CONTROLLER.search_date(today_date)
+    out: list[dict[str, str |  datetime.date]] = assign_key(results)
+
+    return {"results": out}
