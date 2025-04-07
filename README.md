@@ -20,7 +20,7 @@
 * [x] Endpoint for getting news from a certain date
 * [x] Endpoint for getting news between a certain date
 * [x] Endpoint for getting news with a certain keyword in their title
-* [ ] Endpoint for daily news ( /daily or / )
+* [x] Endpoint for daily news ( /daily or / )
 * [x] Clean up endpoint outputs 
 
 > [!WARNING]
