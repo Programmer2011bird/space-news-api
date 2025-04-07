@@ -15,7 +15,7 @@
 * [x] Database function for filtering between dates
 * [x] Database function for filtering by category
 * [x] Database function for filtering by keywords in the title
-* [ ] Store all the articles data in A Database 
+* [x] Store all the articles data in A Database 
 * [x] Endpoint for filtering news by their category
 * [x] Endpoint for getting news from a certain date
 * [x] Endpoint for getting news between a certain date
