@@ -11,7 +11,6 @@ class scraper:
         self.HTML_CONTENT: str = self.RESPONSE.text
 
         self.SOUP: BeautifulSoup = BeautifulSoup(self.HTML_CONTENT, 'html.parser')
-        print(type(self.SOUP))
         self.NEWS_DIVS: list = []
         self.CONTENT_DIVS: list = []
 
@@ -31,8 +30,3 @@ class scraper:
             self.PARAGRAPH += p.text
 
         return self.PARAGRAPH
-    
-
-# if __name__ == "__main__":
-    # SCRAPER: scraper = scraper()
-    # SCRAPER.scrape_whole_article(link="https://www.space.com/space-exploration/mars-rovers/strange-sphere-studded-rock-on-mars-found-by-nasas-perseverance-rover")

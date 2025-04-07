@@ -4,7 +4,7 @@ import datetime
 
 class formatter:
     def __init__(self) -> None:
-        self.scraper: scraper = scraper()
+        self.scraper: scraper = scraper.scraper()
         self.NEWS_DIVS: list = self.scraper.scrape()
     
     def format(self):
@@ -23,12 +23,12 @@ class formatter:
                 DATE: datetime.date = datetime.date.today()
     
                 ITERATION_INFO: dict[str, str | datetime.date] = {
-                    'Name': NAME,
-                    'Category': CATEGORY,
-                    'Date': DATE,
-                    'Link': LINK,
-                    'Summary': SUMMARY,
-                    'Article_Content': ARTICLE_CONTENT
+                    'name': NAME.replace("'", ""),
+                    'category': CATEGORY.replace("'", ""),
+                    'date': DATE,
+                    'link': LINK,
+                    'summary': SUMMARY.replace("'", ""),
+                    'article_content': ARTICLE_CONTENT.replace("'", "")
                 }
     
                 self.WHOLE_INFO.append(ITERATION_INFO)
@@ -37,8 +37,3 @@ class formatter:
                 pass
 
         return self.WHOLE_INFO
-    
-
-# if __name__ == "__main__":
-    # FORMATTER: formatter = formatter()
-    # print(FORMATTER.format())
