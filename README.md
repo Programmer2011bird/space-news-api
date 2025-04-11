@@ -9,8 +9,6 @@
 * [x] The entire content of the articles
 * [x] Summary of the articles
 * [x] The category of the articles
-* [ ] Images in the article title
-* [ ] Images in the article
 * [x] Database function for filtering by date
 * [x] Database function for filtering between dates
 * [x] Database function for filtering by category
