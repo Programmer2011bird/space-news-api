@@ -14,7 +14,7 @@ class DB_CONTROLLER:
         )
         self.CURSOR = self.CONN.cursor()
 
-    def insert(self, name:str, category:str, date:datetime.date, link:str, summary:str, article_content:str) -> None:
+    def insert(self, name:str, category:str, date:datetime.date, link:str, summary:str, article_content:str, author:str) -> None:
         self.CURSOR.execute("SELECT name FROM news;")
         self.IS_REPUTATIVE: bool = False
 
@@ -33,7 +33,8 @@ class DB_CONTROLLER:
                 pass
         
         if not self.IS_REPUTATIVE:
-            self.CURSOR.execute(f"INSERT INTO news (name, category, date, link, summary, article_content) VALUES ('{name}', '{category}', '{date.__str__()}', '{link}', '{summary}', '{article_content}');")
+            VALUES: tuple = (name, category, date.__str__(), link, summary, article_content, author)
+            self.CURSOR.execute(f"INSERT INTO news (name, category, date, link, summary, article_content, author) VALUES (%s, %s, %s, %s, %s, %s, %s);", VALUES)
             self.CONN.commit()
             
             print("successfully inserted the data into db")
