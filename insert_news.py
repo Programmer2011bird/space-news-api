@@ -9,7 +9,7 @@ class inserter:
         self.FORMATTER: formatter.formatter = formatter.formatter()
 
         self.news: list[dict[str, str | datetime.date]] = self.FORMATTER.format()
-        
+
         for news in self.news:
             self.DB_CONTROLLER.insert(
                 news["name"],
@@ -17,7 +17,8 @@ class inserter:
                 news["date"],
                 news["link"],
                 news["summary"],
-                news["article_content"]
+                news["article_content"],
+                news["author"]
             )
 
 
