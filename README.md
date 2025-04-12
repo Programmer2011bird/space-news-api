@@ -9,7 +9,7 @@ This project is open-source (MIT License).
 The author is not responsible for misuse of scraped data.  
 
 ## Takedown Requests  
-Contact [maysamshaker7@gmail.com] to remove content.
+Contact [my email](maysamshaker7@gmail.com) to remove content.
 
 <span> This API serves Space news from space.com </span>
 
@@ -20,7 +20,7 @@ Contact [maysamshaker7@gmail.com] to remove content.
 * [x] The entire content of the articles
 * [x] Summary of the articles
 * [x] The category of the articles
-* [ ] The Author
+* [x] The Author of the articles
 * [x] Database function for filtering by date
 * [x] Database function for filtering between dates
 * [x] Database function for filtering by category
