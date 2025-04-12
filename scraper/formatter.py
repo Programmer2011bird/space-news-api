@@ -15,6 +15,7 @@ class formatter:
                 CONTENT = self.NEWS_DIVS[index + 1].find('div', attrs={'class':'content'})
     
                 CATEGORY: str = self.NEWS_DIVS[index + 1].find('a', attrs={'class':'category-link'}).text
+                AUTHOR: str = self.NEWS_DIVS[index + 1].find('span', attrs={'class':'by-author'}).text
                 LINK: str = self.NEWS_DIVS[index + 1].find_all('a', attrs={'class':'article-link'}, href=True)[0]['href']
                 ARTICLE_CONTENT: str = self.scraper.scrape_whole_article(LINK)
 
@@ -25,6 +26,7 @@ class formatter:
                 ITERATION_INFO: dict[str, str | datetime.date] = {
                     'name': NAME.replace("'", ""),
                     'category': CATEGORY.replace("'", ""),
+                    'author': AUTHOR.replace("By", "").replace("\n",""),
                     'date': DATE,
                     'link': LINK,
                     'summary': SUMMARY.replace("'", ""),
