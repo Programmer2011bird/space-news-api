@@ -42,7 +42,7 @@ class DB_CONTROLLER:
     def search_title(self, keyword: str) -> list:
         keyword = keyword.replace(" ", "+")
         
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE title_search @@ to_tsquery('english', '{keyword}')")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE name_search @@ to_tsquery('english', '{keyword}');")
         search_results: list = self.CURSOR.fetchall()
         
         return search_results
@@ -65,13 +65,13 @@ class DB_CONTROLLER:
         return search_results
     
     def search_category(self, category: str) -> list:
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE category='{category}'")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE category='{category}';")
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
     
     def search_author(self, author: str):
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author WHERE author='{author}'")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE author='{author}';")
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
