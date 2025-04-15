@@ -44,7 +44,7 @@ async def search_category(query: str) -> dict[str, list[dict[str, str |  datetim
     return {"results": out}
 
 @API.get("/search/author/{query}")
-async def search_author(query: str):
+async def search_author(query: str) -> dict[str, list[dict[str, str |  datetime.date]]]:
     query: str = query.replace("%20", " ")
     results: list[tuple] = DB_CONTROLLER.search_author(query)
     out: list[dict[str, str | datetime.date]] = assign_key(results)
