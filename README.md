@@ -25,13 +25,14 @@ Contact [my email](maysamshaker7@gmail.com) to remove content.
 * [x] Database function for filtering between dates
 * [x] Database function for filtering by category
 * [x] Database function for filtering by keywords in the title
-* [ ] Database function for filtering by author
+* [x] Database function for filtering by author
 * [x] Store all the articles data in A Database 
 * [x] Endpoint for filtering news by their category
 * [x] Endpoint for getting news from a certain date
 * [x] Endpoint for getting news between a certain date
 * [x] Endpoint for getting news with a certain keyword in their title
 * [x] Endpoint for daily news ( /daily or / )
+* [x] Endpoint for getting news from author
 * [x] Clean up endpoint outputs 
 * [ ] Add Security layers 
  - [ ] HTTPS integration
