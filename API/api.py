@@ -22,7 +22,8 @@ def assign_key(inputs: list[tuple]) -> list[dict[str, str |  datetime.date]]:
             "date": result[2], 
             "link": result[3],
             "summary": result[4],
-            "article_content": result[5]
+            "article_content": result[5], 
+            "author": result[6]
         })
 
     return out
@@ -39,6 +40,14 @@ async def search_category(query: str) -> dict[str, list[dict[str, str |  datetim
     query: str = query.replace("%20", " ")
     results: list[tuple] = DB_CONTROLLER.search_category(query)
     out: list[dict[str, str |  datetime.date]] = assign_key(results)
+
+    return {"results": out}
+
+@API.get("/search/author/{query}")
+async def search_author(query: str):
+    query: str = query.replace("%20", " ")
+    results: list[tuple] = DB_CONTROLLER.search_author(query)
+    out: list[dict[str, str | datetime.date]] = assign_key(results)
 
     return {"results": out}
 
