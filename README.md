@@ -35,9 +35,9 @@ Contact [my email](maysamshaker7@gmail.com) to remove content.
 * [x] Endpoint for getting news from author
 * [x] Clean up endpoint outputs 
 * [ ] Add Security layers 
- - [ ] HTTPS integration
- - [ ] Prevent SQL injection
- - [ ] Add headers to avoid getting blocked 
+ - * [ ] HTTPS integration
+ - * [x] Prevent SQL injection
+ - * [ ] Add headers to avoid getting blocked 
 
 > [!WARNING]
 > THIS API IS STILL UNDER DEVELOPEMENT
