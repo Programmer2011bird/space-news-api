@@ -37,7 +37,7 @@ Contact [my email](maysamshaker7@gmail.com) to remove content.
 * [ ] Add Security layers 
  - * [ ] HTTPS integration
  - * [x] Prevent SQL injection
- - * [ ] Add headers to avoid getting blocked 
+ - * [x] Add headers to avoid getting blocked 
 
 > [!WARNING]
 > THIS API IS STILL UNDER DEVELOPEMENT
