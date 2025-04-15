@@ -40,17 +40,19 @@ class DB_CONTROLLER:
             print("successfully inserted the data into db")
     
     def search_title(self, keyword: str) -> list:
-        keyword = keyword.replace(" ", "+")
+        keyword: str = keyword.replace(" ", "+")
+        VALUES: tuple = (keyword, )
         
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE name_search @@ to_tsquery('english', '{keyword}');")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE name_search @@ to_tsquery('english', %s);", VALUES)
         search_results: list = self.CURSOR.fetchall()
         
         return search_results
     
     def search_date(self, Date: datetime.date) -> list:
         Date: str = Date.__str__()
+        VALUES: tuple = (Date, )
         
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE date='{Date}';")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE date=%s;", VALUES)
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
@@ -58,20 +60,25 @@ class DB_CONTROLLER:
     def search_between_dates(self, start_date: datetime.date, end_date: datetime.date) -> list:
         start_date: str = start_date.__str__()
         end_date: str = end_date.__str__()
+        VALUES: tuple = (start_date, end_date)
 
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE date BETWEEN '{start_date}' AND '{end_date}';")
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE date BETWEEN %s AND %s;", VALUES)
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
     
     def search_category(self, category: str) -> list:
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE category='{category}';")
+        VALUES: tuple = (category, )
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE category=%s;", VALUES)
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
     
-    def search_author(self, author: str):
-        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE author='{author}';")
+    def search_author(self, author: str) -> list:
+        author = author + " "
+        VALUES: tuple = (author, )
+
+        search_query = self.CURSOR.execute(f"SELECT name, category, date, link, summary, article_content, author FROM news WHERE author=%s;", VALUES)
         search_results: list = self.CURSOR.fetchall()
 
         return search_results
