@@ -1,43 +1,85 @@
 # SPACE NEW API
+A RESTFUL API made for serving space and physics related articles from space.com
 
-## Data Source  
+## Data Source & Disclaimer
 Articles are sourced from Space.com for **personal, non-commercial use only**.  
 This project complies with fair use (not republishing full content for profit).
 
+## Features :
+
+### Data
+- Full article content including title, body, author, date etc.
+- Summary of the article ( given by space.com )
+- Article Categories
+- Links to the original article
+
+### Filtering Endpoints
+| Endpoint | Description |
+|----------|-------------|
+| `/` or `/daily` | Daily news | 
+| `/search/date/{year}-{month}-{day}` | News from a specific date |
+| `/search/dates/start_date={year}-{month}-{day}&end_date={year}-{month}-{day}` | News from a specific date range | 
+| `/search/category/{name}` | Category filter | 
+| `/search/keyword/{query}` | Title keyword search |
+| `/author/{name}` | Articles by author | 
+
+## Tech stack
+- **Backend** : FastAPI
+- **Database** : PostgreSQL
+- **Scraping** : BeautifulSoup + requests
+
+### Get started
+```sql
+-- Database configuration
+CREATE DATABASE news;
+
+\c news
+
+CREATE TABLE news (
+    name VARCHAR(1040),
+    category VARCHAR(255),
+    date date,
+    link text,
+    summary text,
+    article_content text,
+    author VARCHAR(255)
+)
+
+-- Automatic tsvector search
+
+ALTER TABLE news ADD COLUMN name_search tsvector;
+CREATE INDEX idx_name_tsvector ON news USING gin(name_search);
+CREATE OR REPLACE FUNCTION update_name_search()
+RETURNS trigger AS $$
+BEGIN
+    NEW.name_search = to_tsvector('english', NEW.name);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql
+
+CREATE TRIGGER trigger_update_name_search
+BEFORE INSERT OR UPDATE OF name ON news
+FOR EACH ROW
+EXECUTE FUNCTION update_name_search();
+```
+
+```bash
+git clone https://github.com/Programmer2011bird/space-news-api
+cd space-news-api
+pip install -r requirements.txt
+
+# Database Configuration
+touch database/conf.py
+# Edit conf.py with your database credentials
+# Running the API
+fastapi API/api.py
+# Scraping and inserting news to database
+python3 insert_news.py
+```
+
+## TODO
+- [ ] Add Rate limiting
+
 ## License  
-This project is open-source (MIT License).  
-The author is not responsible for misuse of scraped data.  
-
-## Takedown Requests  
-Contact [my email](maysamshaker7@gmail.com) to remove content.
-
-<span> This API serves Space news from space.com </span>
-
-### Features :
-* [x] Headlines of the articles
-* [x] Date of the articles
-* [x] Link of the articles
-* [x] The entire content of the articles
-* [x] Summary of the articles
-* [x] The category of the articles
-* [x] The Author of the articles
-* [x] Database function for filtering by date
-* [x] Database function for filtering between dates
-* [x] Database function for filtering by category
-* [x] Database function for filtering by keywords in the title
-* [x] Database function for filtering by author
-* [x] Store all the articles data in A Database 
-* [x] Endpoint for filtering news by their category
-* [x] Endpoint for getting news from a certain date
-* [x] Endpoint for getting news between a certain date
-* [x] Endpoint for getting news with a certain keyword in their title
-* [x] Endpoint for daily news ( /daily or / )
-* [x] Endpoint for getting news from author
-* [x] Clean up endpoint outputs 
-* [ ] Add Security layers 
- - * [ ] HTTPS integration
- - * [x] Prevent SQL injection
- - * [x] Add headers to avoid getting blocked 
-
-> [!WARNING]
-> THIS API IS STILL UNDER DEVELOPEMENT
+This project is open-source (MIT License) - See [LICENSE](LICENSE) For details
+> **Important**: This API is intended for **personal, non-commercial use only**. The maintainer is not responsible for misuse of scraped data.
