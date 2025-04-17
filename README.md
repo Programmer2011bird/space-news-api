@@ -12,7 +12,6 @@ This project complies with fair use (not republishing full content for profit).
 - Summary of the article ( given by space.com )
 - Article Categories
 - Links to the original article
-
 ### Filtering Endpoints
 | Endpoint | Description |
 |----------|-------------|
@@ -79,6 +78,7 @@ python3 insert_news.py
 
 ## TODO
 - [ ] Add Rate limiting
+- [ ] Add daily scraping to insert_news.py
 
 ## License  
 This project is open-source (MIT License) - See [LICENSE](LICENSE) For details
