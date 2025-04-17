@@ -82,4 +82,6 @@ python3 insert_news.py
 
 ## License  
 This project is open-source (MIT License) - See [LICENSE](LICENSE) For details
-> **Important**: This API is intended for **personal, non-commercial use only**. The maintainer is not responsible for misuse of scraped data.
+
+> [!IMPORTANT]
+> This API is intended for **personal, non-commercial use only**. The maintainer is not responsible for misuse of scraped data.
