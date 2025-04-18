@@ -1,5 +1,7 @@
 from scraper import formatter
 from database import cursor
+from time import sleep
+import schedule
 import datetime
 
 
@@ -22,5 +24,12 @@ class inserter:
             )
 
 
-if __name__ == "__main__":
+def main():
     INS = inserter()
+
+schedule.every().day.at("01:00").do(main)
+schedule.every().day.at("18:00").do(main)
+
+while True:
+    schedule.run_pending()
+    sleep(3600)
