@@ -71,13 +71,13 @@ pip install -r requirements.txt
 touch database/conf.py
 # Edit conf.py with your database credentials
 # Running the API
-fastapi API/api.py
+fastapi run API/api.py
 # Scraping and inserting news to database
 python3 insert_news.py
 ```
 
 ## TODO
-- [ ] Add Rate limiting
+- [x] Add Rate limiting
 - [ ] Add daily scraping to insert_news.py
 
 ## License  
