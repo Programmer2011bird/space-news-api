@@ -12,6 +12,7 @@ This project complies with fair use (not republishing full content for profit).
 - Summary of the article ( given by space.com )
 - Article Categories
 - Links to the original article
+
 ### Filtering Endpoints
 | Endpoint | Description |
 |----------|-------------|
@@ -26,6 +27,10 @@ This project complies with fair use (not republishing full content for profit).
 - **Backend** : FastAPI
 - **Database** : PostgreSQL
 - **Scraping** : BeautifulSoup + requests
+
+## Other
+- **Rate Limiting** : 100 requests every hour
+- **Daily scraping** : Scraping news every 1AM and 6PM
 
 ### Get started
 ```sql
@@ -75,10 +80,6 @@ fastapi run API/api.py
 # Scraping and inserting news to database
 python3 insert_news.py
 ```
-
-## TODO
-- [x] Add Rate limiting
-- [ ] Add daily scraping to insert_news.py
 
 ## License  
 This project is open-source (MIT License) - See [LICENSE](LICENSE) For details
