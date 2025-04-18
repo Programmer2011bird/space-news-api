@@ -2,3 +2,5 @@ requests
 beautifulsoup
 psycopg2
 fastapi[standard]
+slowapi
+schedule
