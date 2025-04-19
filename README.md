@@ -75,8 +75,8 @@ pip install -r requirements.txt
 # Database Configuration
 touch database/conf.py
 # Edit conf.py with your database credentials
-# Running the API
-fastapi run API/api.py
+# Running the API using gunicorn
+gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:8000
 # Scraping and inserting news to database
 python3 insert_news.py
 ```
